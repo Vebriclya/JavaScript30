@@ -120,8 +120,8 @@
 
       // 5. Sort the inventors by years lived
       const oldest = inventors.sort(function (inventor1, inventor2) {
-        const inventor1 = inventor1.passed - inventor1.year;
-        const inventor2 = inventor2.passed - inventor2.year;
+        inventor1 = inventor1.passed - inventor1.year;
+        inventor2 = inventor2.passed - inventor2.year;
         return inventor1 > inventor2 ? -1 : 1;
         /* AKA...
       if(inventor1 > inventor2){
@@ -134,15 +134,24 @@
 
       // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
       // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+      /*
       const category = document.querySelector(".mw-category-generated"); // selects everything with the class of .mw-category-generated
       const links = Array.from(category.querySelectorAll("a")); // selects all the links from that category
       const de = links
         .map((link) => link.textContent) // map executes a function once on every item in that array (in this case link => link.textContent)
         .filter((streetName) => streetName.includes("de")); // then filter returns the ones which include "de"
+      */
       /* The above is all run inside the dev console in chrome, btw */
 
       // 7. sort Exercise
       // Sort the people alphabetically by last name
+      const alphabeticallySorted = people.sort((person1, person2) => {
+        const [person1LastName, person1FirstName] = person1.split(", "); // Make variables to use in your sorting function
+        const [person2LastName, person2FirstName] = person2.split(", "); // define last name as what comes before the split and first name as what comes after
+        return person1LastName > person2LastName ? 1 : -1; // If the person 1's last name is alphabetically after person 2's last name, it's placed after person 2
+      });
+
+      console.log(alphabeticallySorted);
 
       // 8. Reduce Exercise
       // Sum up the instances of each of these
@@ -162,6 +171,14 @@
         "car",
         "truck",
       ];
+
+      const transportation = data.reduce(function (obj, item) {
+        // item refers to car, truck, bike etc
+        if (!obj[item]) {
+          // If there is no object, item
+          obj[item] = 0; // Then object, item, is equal to 0
+        }
+      }, {});
     </script>
   </body>
 </html>
