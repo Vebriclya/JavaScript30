@@ -72,6 +72,11 @@
         "Biondo, Frank",
       ];
 
+      let arr = [3, 4, 5, 6];
+
+      const timesByThree = arr.map((number) => number * 3);
+      console.table(timesByThree);
+
       // Array.prototype.filter()
       // 1. Filter the list of inventors for those who were born in the 1500's
       const fifteenLongForm = inventors.filter(function (inventor) {
@@ -155,6 +160,7 @@
 
       // 8. Reduce Exercise
       // Sum up the instances of each of these
+
       const data = [
         "car",
         "car",
@@ -178,7 +184,11 @@
           // If there is no object, item
           obj[item] = 0; // Then object, item, is equal to 0
         }
-      }, {});
+        obj[item]++; // otherwise object item
+        return obj;
+      }, {}); // This {} is a blank object
+
+      console.table(transportation);
     </script>
   </body>
 </html>
